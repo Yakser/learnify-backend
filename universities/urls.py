@@ -7,6 +7,7 @@ from universities.views import (
     DepartmentList,
     UniversityDepartmentList,
     UniversityDepartmentDetail,
+    SpecializationDetail,
 )
 
 app_name = "universities"
@@ -20,4 +21,5 @@ urlpatterns = [
     ),
     path("departments/", DepartmentList.as_view()),
     path("specializations/", SpecializationList.as_view()),
+    path("specializations/<int:pk>", SpecializationDetail.as_view()),
 ]
