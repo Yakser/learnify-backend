@@ -25,9 +25,19 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Project Apps
     "users.apps.UsersConfig",
+    "subjects.apps.SubjectsConfig",
+    "universities.apps.UniversitiesConfig",
     # Rest framework
     "rest_framework",
+    # Filters
+    "django_filters",
+    "taggit",
+    "taggit_serializer",
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
