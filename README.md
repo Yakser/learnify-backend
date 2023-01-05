@@ -37,3 +37,5 @@ To run it on all of your files, do
 ```bash
 pre-commit run --all-files
 ```
+
+### Replace ugettext with gettext in taggit serializer
