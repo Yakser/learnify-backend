@@ -14,8 +14,13 @@ class University(models.Model):
         tags: A TaggableManager tags of a University.
     """
 
-    name = models.CharField(max_length=512, null=False, blank=False)
-    description = models.TextField(null=True, blank=True)
+    name = models.CharField(
+        max_length=512, null=False, blank=False, verbose_name="Название"
+    )
+    city = models.CharField(
+        max_length=512, null=False, blank=False, default="Москва", verbose_name="Город"
+    )
+    description = models.TextField(null=True, blank=True, verbose_name="Описание")
     datetime_created = models.DateTimeField(
         verbose_name="Дата добавления", null=False, auto_now_add=True
     )
@@ -40,15 +45,28 @@ class Department(models.Model):
         university: A ForeignKey to University.
     """
 
-    name = models.CharField(max_length=512, null=False, blank=False)
-    code = models.CharField(max_length=512, null=False, blank=False)
+    name = models.CharField(
+        max_length=512, null=False, blank=False, verbose_name="Название"
+    )
+    code = models.CharField(
+        max_length=512,
+        null=False,
+        blank=False,
+        verbose_name="Код",
+        help_text="Например: 09.03.01",
+    )
 
     university = models.ForeignKey(
-        University, on_delete=models.CASCADE, related_name="departments"
+        University,
+        on_delete=models.CASCADE,
+        related_name="departments",
+        verbose_name="Университет",
     )
 
     datetime_created = models.DateTimeField(
-        verbose_name="Дата добавления", null=False, auto_now_add=True
+        null=False,
+        auto_now_add=True,
+        verbose_name="Дата добавления",
     )
     # subjects_set = models.PositiveSmallIntegerField(
     #     choices=VERBOSE_SUBJECT_SETS,
@@ -76,17 +94,22 @@ class Specialization(models.Model):
         description: A TextField description of a Specialization.
     """
 
-    name = models.CharField(max_length=512, null=False, blank=False)
-    description = models.TextField(null=True, blank=True)
+    name = models.CharField(
+        max_length=512, null=False, blank=False, verbose_name="Название"
+    )
+    description = models.TextField(null=True, blank=True, verbose_name="Описание")
     department = models.ForeignKey(
         Department,
         on_delete=models.CASCADE,
         null=False,
         blank=False,
         related_name="specializations",
+        verbose_name="Направление",
     )
     datetime_created = models.DateTimeField(
-        verbose_name="Дата добавления", null=False, auto_now_add=True
+        null=False,
+        auto_now_add=True,
+        verbose_name="Дата добавления",
     )
 
     tags = TaggableManager()

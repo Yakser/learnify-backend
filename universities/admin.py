@@ -3,21 +3,55 @@ from django.contrib import admin
 from universities.models import University, Department, Specialization
 
 
-class SpecializationAdmin(admin.TabularInline):
+class SpecializationInline(admin.TabularInline):
     model = Specialization
-    show_change_link = True
 
 
-class DepartmentAdmin(admin.TabularInline):
+class DepartmentInline(admin.TabularInline):
     model = Department
-    inlines = [SpecializationAdmin]
-    show_change_link = True
+
+
+@admin.register(Specialization)
+class SpecializationAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "name",
+        "get_department_name",
+        "get_department_university",
+    )
+    list_display_links = (
+        "id",
+        "name",
+    )
+
+    def get_department_name(self, obj):
+        return obj.department.name
+
+    def get_department_university(self, obj):
+        return obj.department.university.name
+
+
+@admin.register(Department)
+class DepartmentAdmin(admin.ModelAdmin):
+    inlines = [SpecializationInline]
+
+    list_display = (
+        "id",
+        "name",
+        "get_university_name",
+    )
+    list_display_links = (
+        "id",
+        "name",
+    )
+
+    def get_university_name(self, obj):
+        return obj.university.name
 
 
 @admin.register(University)
 class UniversityAdmin(admin.ModelAdmin):
-    inlines = [DepartmentAdmin]
-    show_change_link = True
+    inlines = [DepartmentInline]
 
     list_display = (
         "id",

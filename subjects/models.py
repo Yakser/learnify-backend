@@ -10,9 +10,13 @@ class Subject(models.Model):
         datetime_created: A DateTimeField indicating date of creation.
     """
 
-    name = models.CharField(max_length=512, null=False, blank=False)
+    name = models.CharField(
+        max_length=512, null=False, blank=False, verbose_name="Название"
+    )
     datetime_created = models.DateTimeField(
-        verbose_name="Дата добавления", null=False, auto_now_add=True
+        null=False,
+        auto_now_add=True,
+        verbose_name="Дата добавления",
     )
 
     def __str__(self):

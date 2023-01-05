@@ -12,7 +12,7 @@ class SpecializationListSerializer(TaggitSerializer, serializers.ModelSerializer
         fields = (
             "id",
             "name",
-            "description",
+            "tags",
         )
 
 
@@ -24,6 +24,8 @@ class SpecializationDetailSerializer(TaggitSerializer, serializers.ModelSerializ
         fields = (
             "id",
             "name",
+            "description",
+            "tags",
         )
 
 
