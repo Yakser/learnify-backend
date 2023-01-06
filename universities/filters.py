@@ -19,7 +19,10 @@ class UniversityFilter(filters.FilterSet):
 
     class Meta:
         model = University
-        fields = ("name",)
+        fields = (
+            "name",
+            "tags__name",
+        )
 
 
 class SpecializationFilter(filters.FilterSet):
@@ -38,7 +41,10 @@ class SpecializationFilter(filters.FilterSet):
 
     class Meta:
         model = Specialization
-        fields = ("name",)
+        fields = (
+            "name",
+            "tags__name",
+        )
 
 
 class DepartmentFilter(filters.FilterSet):
@@ -57,4 +63,7 @@ class DepartmentFilter(filters.FilterSet):
 
     class Meta:
         model = Department
-        fields = ("name",)
+        fields = (
+            "name",
+            "tags__name",
+        )

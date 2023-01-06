@@ -10,6 +10,8 @@ DEBUG = config("DEBUG", default=False, cast=bool)
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost",
 ]
+CORS_ALLOW_ALL_ORIGINS = True
+
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
@@ -33,6 +35,8 @@ INSTALLED_APPS = [
     "django_filters",
     "taggit",
     "taggit_serializer",
+    # Plugins
+    "corsheaders",
 ]
 
 REST_FRAMEWORK = {
@@ -42,6 +46,7 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
