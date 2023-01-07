@@ -72,6 +72,7 @@ class UniversityListSerializer(TaggitSerializer, serializers.ModelSerializer):
             "name",
             "city",
             "short_description",
+            "logo_url",
             "tags",
         )
 
@@ -87,6 +88,7 @@ class UniversityDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
             "name",
             "city",
             "description",
+            "logo_url",
             "departments",
             "tags",
         )
