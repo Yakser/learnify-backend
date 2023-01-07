@@ -21,6 +21,7 @@ class University(models.Model):
         max_length=512, null=False, blank=False, default="Москва", verbose_name="Город"
     )
     description = models.TextField(null=True, blank=True, verbose_name="Описание")
+    logo_url = models.URLField(null=True, blank=True, verbose_name="Ссылка на логотип")
     datetime_created = models.DateTimeField(
         verbose_name="Дата добавления", null=False, auto_now_add=True
     )
