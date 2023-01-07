@@ -10,6 +10,7 @@ class UniversityFilter(filters.FilterSet):
     Adds filtering to DRF list retrieve views
     Parameters to filter by:
         name (str)
+        city (str)
     Examples:
         ?name=test equals to .filter(name='test')
         ?name__contains=yawning equals to .filter(name__contains='yawning')
@@ -21,6 +22,7 @@ class UniversityFilter(filters.FilterSet):
         model = University
         fields = (
             "name",
+            "city",
             "tags__name",
         )
 

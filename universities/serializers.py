@@ -59,12 +59,19 @@ class DepartmentDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
 
 class UniversityListSerializer(TaggitSerializer, serializers.ModelSerializer):
     tags = TagListSerializerField()
+    short_description = serializers.SerializerMethodField()
+
+    @classmethod
+    def get_short_description(cls, university):
+        return university.get_short_description()
 
     class Meta:
         model = University
         fields = (
             "id",
             "name",
+            "city",
+            "short_description",
             "tags",
         )
 
@@ -78,6 +85,7 @@ class UniversityDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
         fields = (
             "id",
             "name",
+            "city",
             "description",
             "departments",
             "tags",

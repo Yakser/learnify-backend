@@ -27,6 +27,9 @@ class University(models.Model):
 
     tags = TaggableManager()
 
+    def get_short_description(self):
+        return self.description[:128]
+
     def __str__(self):
         return f"University<{self.pk}> - {self.name}"
 
