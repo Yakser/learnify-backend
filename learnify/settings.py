@@ -24,11 +24,11 @@ ALLOWED_HOSTS = [
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-ALLOWED_HOSTS = [
+INTERNAL_IPS = [
     "127.0.0.1",
-    "localhost",
-    "0.0.0.0",
 ]
+
+SESSION_COOKIE_SECURE = False
 
 INSTALLED_APPS = [
     "django.contrib.admin",
