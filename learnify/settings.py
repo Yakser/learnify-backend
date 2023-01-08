@@ -9,7 +9,19 @@ DEBUG = config("DEBUG", default=False, cast=bool)
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost",
+    "http://api-learnify.std-2129.ist.mospolytech.ru",
+    "http://www.api-learnify.std-2129.ist.mospolytech.ru",
+    "http://learnify.std-2129.ist.mospolytech.ru",
+    "http://www.learnify.std-2129.ist.mospolytech.ru",
 ]
+
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "0.0.0.0",
+    "api-learnify.std-2129.ist.mospolytech.ru",
+]
+
 CORS_ALLOW_ALL_ORIGINS = True
 
 ALLOWED_HOSTS = [
