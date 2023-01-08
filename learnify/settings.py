@@ -23,9 +23,8 @@ ALLOWED_HOSTS = [
     "www.api-learnify.std-2129.ist.mospolytech.ru",
 ]
 
-CORS_ALLOW_ALL_ORIGINS = False
-
 CORS_ALLOWED_ORIGINS = [
+    "http://api-learnify.std-2129.ist.mospolytech.ru",
     "http://learnify.std-2129.ist.mospolytech.ru",
 ]
 
