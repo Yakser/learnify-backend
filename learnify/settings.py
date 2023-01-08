@@ -75,13 +75,24 @@ TEMPLATES = [
 WSGI_APPLICATION = "learnify.wsgi.application"
 
 # Database
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "db.sqlite3",
+if DEBUG:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": "db.sqlite3",
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.mysql",
+            "NAME": config("DATABASE_NAME", default="mysql", cast=str),
+            "USER": config("DATABASE_USER", default="mysql", cast=str),
+            "PASSWORD": config("DATABASE_PASSWORD", default="mysql", cast=str),
+            "HOST": config("DATABASE_HOST", default="localhost", cast=str),
+            "PORT": config("DATABASE_PORT", default="5432", cast=str),
+        }
+    }
 
 # DATABASES = {
 #     "default": {
