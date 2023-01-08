@@ -23,7 +23,15 @@ ALLOWED_HOSTS = [
     "www.api-learnify.std-2129.ist.mospolytech.ru",
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = False
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost",
+    "http://api-learnify.std-2129.ist.mospolytech.ru",
+    "http://www.api-learnify.std-2129.ist.mospolytech.ru",
+    "http://learnify.std-2129.ist.mospolytech.ru",
+    "http://www.learnify.std-2129.ist.mospolytech.ru",
+]
 
 INTERNAL_IPS = [
     "127.0.0.1",
