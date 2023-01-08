@@ -20,6 +20,8 @@ ALLOWED_HOSTS = [
     "localhost",
     "0.0.0.0",
     "api-learnify.std-2129.ist.mospolytech",
+    "www.api-learnify.std-2129.ist.mospolytech",
+    "195.9.87.69",
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
