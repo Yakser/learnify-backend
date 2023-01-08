@@ -78,14 +78,21 @@ WSGI_APPLICATION = "learnify.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": config("DATABASE_NAME", default="postgres", cast=str),
-        "USER": config("DATABASE_USER", default="postgres", cast=str),
-        "PASSWORD": config("DATABASE_PASSWORD", default="postgres", cast=str),
-        "HOST": config("DATABASE_HOST", default="localhost", cast=str),
-        "PORT": config("DATABASE_PORT", default="5432", cast=str),
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "db.sqlite3",
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": config("DATABASE_NAME", default="postgres", cast=str),
+#         "USER": config("DATABASE_USER", default="postgres", cast=str),
+#         "PASSWORD": config("DATABASE_PASSWORD", default="postgres", cast=str),
+#         "HOST": config("DATABASE_HOST", default="localhost", cast=str),
+#         "PORT": config("DATABASE_PORT", default="5432", cast=str),
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
