@@ -27,6 +27,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://api-learnify.std-2129.ist.mospolytech.ru",
     "http://learnify.std-2129.ist.mospolytech.ru",
 ]
+if DEBUG:
+    CORS_ALLOWED_ORIGINS.extend(["http://127.0.0.1:5173", "http://localhost:5173"])
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -62,13 +64,17 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    # "corsheaders.middleware.CorsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+# fixme: remove auto-adding header in nginx config
+if not DEBUG:
+    del MIDDLEWARE[2]
 
 ROOT_URLCONF = "learnify.urls"
 

@@ -7,11 +7,36 @@ from universities.models import University, Department, Specialization
 class SpecializationListSerializer(TaggitSerializer, serializers.ModelSerializer):
     tags = TagListSerializerField()
 
+    university_name = serializers.SerializerMethodField()
+    city = serializers.SerializerMethodField()
+    short_description = serializers.SerializerMethodField()
+    logo_url = serializers.SerializerMethodField()
+
+    @classmethod
+    def get_short_description(cls, specialization):
+        return specialization.get_short_description()
+
+    @classmethod
+    def get_city(cls, specialization):
+        return specialization.get_city()
+
+    @classmethod
+    def get_university_name(cls, specialization):
+        return specialization.get_university_name()
+
+    @classmethod
+    def get_logo_url(cls, specialization):
+        return specialization.get_university_logo_url()
+
     class Meta:
         model = Specialization
         fields = (
             "id",
             "name",
+            "university_name",
+            "city",
+            "short_description",
+            "logo_url",
             "tags",
         )
 
@@ -19,12 +44,31 @@ class SpecializationListSerializer(TaggitSerializer, serializers.ModelSerializer
 class SpecializationDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
     tags = TagListSerializerField()
 
+    university_name = serializers.SerializerMethodField()
+    city = serializers.SerializerMethodField()
+    logo_url = serializers.SerializerMethodField()
+
+    @classmethod
+    def get_city(cls, specialization):
+        return specialization.get_city()
+
+    @classmethod
+    def get_university_name(cls, specialization):
+        return specialization.get_university_name()
+
+    @classmethod
+    def get_logo_url(cls, specialization):
+        return specialization.get_university_logo_url()
+
     class Meta:
         model = Specialization
         fields = (
             "id",
             "name",
             "description",
+            "city",
+            "university_name",
+            "logo_url",
             "tags",
         )
 

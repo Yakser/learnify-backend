@@ -60,12 +60,14 @@ class SpecializationFilter(filters.FilterSet):
         method=filter_by_tags,
     )
 
+    city = filters.CharFilter(
+        field_name="department__university__city",
+        lookup_expr="iexact",
+    )
+
     class Meta:
         model = Specialization
-        fields = (
-            "name",
-            "tags",
-        )
+        fields = ("name", "tags", "city")
 
 
 class DepartmentFilter(filters.FilterSet):

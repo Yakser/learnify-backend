@@ -17,9 +17,10 @@ urlpatterns = [
     path("<int:pk>/", UniversityDetail.as_view()),
     path("<int:pk>/departments/", UniversityDepartmentList.as_view()),
     path(
-        "<int:pk>/departments/<int:department_id>", UniversityDepartmentDetail.as_view()
+        "<int:pk>/departments/<int:department_id>/",
+        UniversityDepartmentDetail.as_view(),
     ),
     path("departments/", DepartmentList.as_view()),
     path("specializations/", SpecializationList.as_view()),
-    path("specializations/<int:pk>", SpecializationDetail.as_view()),
+    path("specializations/<int:pk>/", SpecializationDetail.as_view()),
 ]

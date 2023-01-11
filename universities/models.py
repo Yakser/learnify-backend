@@ -118,6 +118,18 @@ class Specialization(models.Model):
 
     tags = TaggableManager()
 
+    def get_short_description(self):
+        return self.description[:128]
+
+    def get_city(self):
+        return self.department.university.city
+
+    def get_university_name(self):
+        return self.department.university.name
+
+    def get_university_logo_url(self):
+        return self.department.university.logo_url
+
     def __str__(self):
         return f"Specialization<{self.pk}> - {self.name}"
 
