@@ -89,6 +89,21 @@ class DepartmentListSerializer(TaggitSerializer, serializers.ModelSerializer):
 class DepartmentDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
     tags = TagListSerializerField()
     specializations = SpecializationListSerializer(many=True)
+    university_name = serializers.SerializerMethodField()
+    city = serializers.SerializerMethodField()
+    logo_url = serializers.SerializerMethodField()
+
+    @classmethod
+    def get_city(cls, department):
+        return department.get_city()
+
+    @classmethod
+    def get_university_name(cls, department):
+        return department.get_university_name()
+
+    @classmethod
+    def get_logo_url(cls, department):
+        return department.get_university_logo_url()
 
     class Meta:
         model = Department
@@ -96,6 +111,9 @@ class DepartmentDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
             "id",
             "name",
             "code",
+            "city",
+            "university_name",
+            "logo_url",
             "specializations",
             "tags",
         )

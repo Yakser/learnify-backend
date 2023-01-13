@@ -53,19 +53,19 @@ class SpecializationDetail(RetrieveAPIView):
     serializer_class = SpecializationDetailSerializer
 
 
-class UniversityDepartmentList(ListAPIView):
-    serializer_class = DepartmentListSerializer
-    filter_backends = (filters.DjangoFilterBackend,)
-    filterset_class = DepartmentFilter
+# class UniversityDepartmentList(ListAPIView):
+#     serializer_class = DepartmentListSerializer
+#     filter_backends = (filters.DjangoFilterBackend,)
+#     filterset_class = DepartmentFilter
+#
+#     def get_queryset(self):
+#         pk = self.kwargs.get("pk")
+#         return Department.objects.filter(pk=pk)
 
-    def get_queryset(self):
-        pk = self.kwargs.get("pk")
-        return Department.objects.filter(pk=pk)
 
-
-class UniversityDepartmentDetail(RetrieveAPIView):
-    serializer_class = DepartmentDetailSerializer
-
-    def get_queryset(self):
-        department_id = self.kwargs.get("department_id")
-        return Department.objects.filter(pk=department_id)
+# class UniversityDepartmentDetail(RetrieveAPIView):
+#     serializer_class = DepartmentDetailSerializer
+#
+#     def get_queryset(self):
+#         department_id = self.kwargs.get("department_id")
+#         return Department.objects.filter(pk=department_id)

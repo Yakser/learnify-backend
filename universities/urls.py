@@ -5,9 +5,10 @@ from universities.views import (
     UniversityDetail,
     SpecializationList,
     DepartmentList,
-    UniversityDepartmentList,
-    UniversityDepartmentDetail,
+    # UniversityDepartmentList,
+    # UniversityDepartmentDetail,
     SpecializationDetail,
+    DepartmentDetail,
 )
 
 app_name = "universities"
@@ -15,10 +16,10 @@ app_name = "universities"
 urlpatterns = [
     path("", UniversityList.as_view()),
     path("<int:pk>/", UniversityDetail.as_view()),
-    path("<int:pk>/departments/", UniversityDepartmentList.as_view()),
+    path("departments/", DepartmentList.as_view()),
     path(
-        "<int:pk>/departments/<int:department_id>/",
-        UniversityDepartmentDetail.as_view(),
+        "departments/<int:pk>/",
+        DepartmentDetail.as_view(),
     ),
     path("departments/", DepartmentList.as_view()),
     path("specializations/", SpecializationList.as_view()),

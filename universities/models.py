@@ -79,6 +79,15 @@ class Department(models.Model):
 
     tags = TaggableManager()
 
+    def get_city(self):
+        return self.university.city
+
+    def get_university_name(self):
+        return self.university.name
+
+    def get_university_logo_url(self):
+        return self.university.logo_url
+
     def __str__(self):
         return f"Department<{self.pk}> - {self.name}"
 
