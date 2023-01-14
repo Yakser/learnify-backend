@@ -38,4 +38,4 @@ To run it on all of your files, do
 pre-commit run --all-files
 ```
 
-### Replace ugettext with gettext in taggit serializer
+### ⚠️ Replace ugettext with gettext in taggit serializer ⚠️
