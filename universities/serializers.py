@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from taggit_serializer.serializers import TagListSerializerField, TaggitSerializer
 
+from subjects.serializers import SubjectsListSerializer
 from universities.models import University, Department, Specialization
 
 
@@ -11,6 +12,7 @@ class SpecializationListSerializer(TaggitSerializer, serializers.ModelSerializer
     city = serializers.SerializerMethodField()
     short_description = serializers.SerializerMethodField()
     logo_url = serializers.SerializerMethodField()
+    subjects = SubjectsListSerializer(many=True)
 
     @classmethod
     def get_short_description(cls, specialization):
@@ -37,6 +39,7 @@ class SpecializationListSerializer(TaggitSerializer, serializers.ModelSerializer
             "city",
             "short_description",
             "logo_url",
+            "subjects",
             "tags",
         )
 

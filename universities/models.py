@@ -2,6 +2,8 @@ from django.db import models
 
 from taggit.managers import TaggableManager
 
+from subjects.models import Subject
+
 
 class University(models.Model):
     """
@@ -119,6 +121,10 @@ class Specialization(models.Model):
         related_name="specializations",
         verbose_name="Направление",
     )
+    subjects = models.ManyToManyField(
+        Subject, verbose_name="Набор предметов", related_name="specializations"
+    )
+
     datetime_created = models.DateTimeField(
         null=False,
         auto_now_add=True,

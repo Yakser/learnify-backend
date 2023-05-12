@@ -5,8 +5,6 @@ from universities.views import (
     UniversityDetail,
     SpecializationList,
     DepartmentList,
-    # UniversityDepartmentList,
-    # UniversityDepartmentDetail,
     SpecializationDetail,
     DepartmentDetail,
 )
