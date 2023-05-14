@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     "taggit_serializer",
     # Plugins
     "corsheaders",
+    "drf_yasg",
 ]
 
 REST_FRAMEWORK = {
