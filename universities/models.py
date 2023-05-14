@@ -31,7 +31,9 @@ class University(models.Model):
     tags = TaggableManager()
 
     def get_short_description(self):
-        return self.description[:128]
+        if self.description:
+            return self.description[:128]
+        return ""
 
     def __str__(self):
         return f"University<{self.pk}> - {self.name}"
@@ -134,7 +136,9 @@ class Specialization(models.Model):
     tags = TaggableManager()
 
     def get_short_description(self):
-        return self.description[:128]
+        if self.description:
+            return self.description[:128]
+        return ""
 
     def get_city(self):
         return self.department.university.city

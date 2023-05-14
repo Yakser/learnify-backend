@@ -1,6 +1,7 @@
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView, ListCreateAPIView
 from django_filters import rest_framework as filters
 
+from core.permissions import IsStaffOrReadOnly
 from universities.filters import (
     UniversityFilter,
     SpecializationFilter,
@@ -17,9 +18,10 @@ from universities.serializers import (
 )
 
 
-class UniversityList(ListAPIView):
+class UniversityList(ListCreateAPIView):
     queryset = University.objects.all()
     serializer_class = UniversityListSerializer
+    permission_classes = [IsStaffOrReadOnly]
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = UniversityFilter
 
@@ -27,11 +29,13 @@ class UniversityList(ListAPIView):
 class UniversityDetail(RetrieveAPIView):
     queryset = University.objects.all()
     serializer_class = UniversityDetailSerializer
+    permission_classes = [IsStaffOrReadOnly]
 
 
 class DepartmentList(ListAPIView):
     queryset = Department.objects.all()
     serializer_class = DepartmentListSerializer
+    permission_classes = [IsStaffOrReadOnly]
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = DepartmentFilter
 
@@ -39,11 +43,13 @@ class DepartmentList(ListAPIView):
 class DepartmentDetail(RetrieveAPIView):
     queryset = Department.objects.all()
     serializer_class = DepartmentDetailSerializer
+    permission_classes = [IsStaffOrReadOnly]
 
 
 class SpecializationList(ListAPIView):
     queryset = Specialization.objects.all()
     serializer_class = SpecializationListSerializer
+    permission_classes = [IsStaffOrReadOnly]
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = SpecializationFilter
 
@@ -51,6 +57,7 @@ class SpecializationList(ListAPIView):
 class SpecializationDetail(RetrieveAPIView):
     queryset = Specialization.objects.all()
     serializer_class = SpecializationDetailSerializer
+    permission_classes = [IsStaffOrReadOnly]
 
 
 # class UniversityDepartmentList(ListAPIView):

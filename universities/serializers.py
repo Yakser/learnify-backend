@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from taggit_serializer.serializers import TagListSerializerField, TaggitSerializer
+from taggit.serializers import TaggitSerializer, TagListSerializerField
 
 from subjects.serializers import SubjectsListSerializer
 from universities.models import University, Department, Specialization
@@ -139,7 +139,11 @@ class UniversityListSerializer(TaggitSerializer, serializers.ModelSerializer):
             "short_description",
             "logo_url",
             "tags",
+            "description",
         )
+        extra_kwargs = {
+            "description": {"write_only": True},
+        }
 
 
 class UniversityDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
