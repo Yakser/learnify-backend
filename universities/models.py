@@ -23,17 +23,15 @@ class University(models.Model):
         max_length=512, null=False, blank=False, default="Москва", verbose_name="Город"
     )
     description = models.TextField(null=True, blank=True, verbose_name="Описание")
+    short_description = models.TextField(
+        null=True, blank=True, verbose_name="Краткое описание"
+    )
     logo_url = models.URLField(null=True, blank=True, verbose_name="Ссылка на логотип")
     datetime_created = models.DateTimeField(
         verbose_name="Дата добавления", null=False, auto_now_add=True
     )
 
     tags = TaggableManager()
-
-    def get_short_description(self):
-        if self.description:
-            return self.description[:128]
-        return ""
 
     def __str__(self):
         return f"University<{self.pk}> - {self.name}"
