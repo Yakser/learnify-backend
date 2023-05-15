@@ -10,8 +10,13 @@ class SpecializationListSerializer(TaggitSerializer, serializers.ModelSerializer
 
     university_name = serializers.SerializerMethodField()
     city = serializers.SerializerMethodField()
+    short_description = serializers.SerializerMethodField()
     logo_url = serializers.SerializerMethodField()
     subjects = SubjectsListSerializer(many=True)
+
+    @classmethod
+    def get_short_description(cls, specialization):
+        return specialization.get_short_description()
 
     @classmethod
     def get_city(cls, specialization):
