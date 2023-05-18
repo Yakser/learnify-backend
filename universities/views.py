@@ -1,5 +1,7 @@
+from rest_framework import status
 from rest_framework.generics import ListAPIView, RetrieveAPIView, ListCreateAPIView
 from django_filters import rest_framework as filters
+from rest_framework.response import Response
 
 from core.permissions import IsStaffOrReadOnly
 from universities.filters import (
@@ -8,6 +10,7 @@ from universities.filters import (
     DepartmentFilter,
 )
 from universities.models import University, Specialization, Department
+from universities.pagination import UniversityListPagination
 from universities.serializers import (
     UniversityListSerializer,
     UniversityDetailSerializer,
@@ -24,6 +27,21 @@ class UniversityList(ListCreateAPIView):
     permission_classes = [IsStaffOrReadOnly]
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = UniversityFilter
+    pagination_class = UniversityListPagination
+
+
+class UniversityListPaginationLimit(RetrieveAPIView):
+    def get(self, request, *args, **kwargs):
+        return Response(
+            {"limit": UniversityListPagination.default_limit}, status=status.HTTP_200_OK
+        )
+
+
+class UniversitiesCount(RetrieveAPIView):
+    def get(self, request, *args, **kwargs):
+        return Response(
+            {"count": University.objects.count()}, status=status.HTTP_200_OK
+        )
 
 
 class UniversityDetail(RetrieveAPIView):

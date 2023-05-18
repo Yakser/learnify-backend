@@ -7,12 +7,16 @@ from universities.views import (
     DepartmentList,
     SpecializationDetail,
     DepartmentDetail,
+    UniversityListPaginationLimit,
+    UniversitiesCount,
 )
 
 app_name = "universities"
 
 urlpatterns = [
     path("", UniversityList.as_view()),
+    path("limit/", UniversityListPaginationLimit.as_view()),
+    path("count/", UniversitiesCount.as_view()),
     path("<int:pk>/", UniversityDetail.as_view()),
     path("departments/", DepartmentList.as_view()),
     path(
