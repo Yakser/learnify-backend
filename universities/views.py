@@ -1,5 +1,5 @@
 from rest_framework import status
-from rest_framework.generics import ListAPIView, RetrieveAPIView, ListCreateAPIView
+from rest_framework.generics import RetrieveAPIView, ListCreateAPIView
 from django_filters import rest_framework as filters
 from rest_framework.response import Response
 
@@ -10,7 +10,7 @@ from universities.filters import (
     DepartmentFilter,
 )
 from universities.models import University, Specialization, Department
-from universities.pagination import UniversityListPagination
+from universities.pagination import ListPagination
 from universities.serializers import (
     UniversityListSerializer,
     UniversityDetailSerializer,
@@ -27,20 +27,13 @@ class UniversityList(ListCreateAPIView):
     permission_classes = [IsStaffOrReadOnly]
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = UniversityFilter
-    pagination_class = UniversityListPagination
+    pagination_class = ListPagination
 
 
 class UniversityListPaginationLimit(RetrieveAPIView):
     def get(self, request, *args, **kwargs):
         return Response(
-            {"limit": UniversityListPagination.default_limit}, status=status.HTTP_200_OK
-        )
-
-
-class UniversitiesCount(RetrieveAPIView):
-    def get(self, request, *args, **kwargs):
-        return Response(
-            {"count": University.objects.count()}, status=status.HTTP_200_OK
+            {"limit": ListPagination.default_limit}, status=status.HTTP_200_OK
         )
 
 
@@ -50,12 +43,13 @@ class UniversityDetail(RetrieveAPIView):
     permission_classes = [IsStaffOrReadOnly]
 
 
-class DepartmentList(ListAPIView):
+class DepartmentList(ListCreateAPIView):
     queryset = Department.objects.all()
     serializer_class = DepartmentListSerializer
     permission_classes = [IsStaffOrReadOnly]
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = DepartmentFilter
+    pagination_class = ListPagination
 
 
 class DepartmentDetail(RetrieveAPIView):
@@ -64,12 +58,13 @@ class DepartmentDetail(RetrieveAPIView):
     permission_classes = [IsStaffOrReadOnly]
 
 
-class SpecializationList(ListAPIView):
+class SpecializationList(ListCreateAPIView):
     queryset = Specialization.objects.all()
     serializer_class = SpecializationListSerializer
     permission_classes = [IsStaffOrReadOnly]
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = SpecializationFilter
+    pagination_class = ListPagination
 
 
 class SpecializationDetail(RetrieveAPIView):

@@ -12,7 +12,7 @@ class SpecializationListSerializer(TaggitSerializer, serializers.ModelSerializer
     city = serializers.SerializerMethodField()
     short_description = serializers.SerializerMethodField()
     logo_url = serializers.SerializerMethodField()
-    subjects = SubjectsListSerializer(many=True)
+    subjects = SubjectsListSerializer(many=True, required=False)
 
     @classmethod
     def get_short_description(cls, specialization):
@@ -41,7 +41,11 @@ class SpecializationListSerializer(TaggitSerializer, serializers.ModelSerializer
             "logo_url",
             "subjects",
             "tags",
+            "department",
         )
+        extra_kwargs = {
+            "department": {"write_only": True},
+        }
 
 
 class SpecializationDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
@@ -86,7 +90,11 @@ class DepartmentListSerializer(TaggitSerializer, serializers.ModelSerializer):
             "name",
             "code",
             "tags",
+            "university",
         )
+        extra_kwargs = {
+            "university": {"write_only": True},
+        }
 
 
 class DepartmentDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
