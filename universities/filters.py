@@ -27,7 +27,7 @@ class UniversityFilter(filters.FilterSet):
         ?name__contains=yawning equals to .filter(name__contains='yawning')
     """
 
-    name__contains = filters.Filter(field_name="name", lookup_expr="contains")
+    name__icontains = filters.Filter(field_name="name", lookup_expr="icontains")
     tags = filters.CharFilter(
         field_name="tags__name",
         method=filter_by_tags,
@@ -54,7 +54,7 @@ class SpecializationFilter(filters.FilterSet):
         ?name__contains=yawning equals to .filter(name__contains='yawning')
     """
 
-    name__contains = filters.Filter(field_name="name", lookup_expr="contains")
+    name__icontains = filters.Filter(field_name="name", lookup_expr="icontains")
     tags = filters.CharFilter(
         field_name="tags__name",
         method=filter_by_tags,
@@ -82,7 +82,7 @@ class DepartmentFilter(filters.FilterSet):
         ?name__contains=yawning equals to .filter(name__contains='yawning')
     """
 
-    name__contains = filters.Filter(field_name="name", lookup_expr="contains")
+    name__icontains = filters.Filter(field_name="name", lookup_expr="icontains")
     tags = filters.CharFilter(
         field_name="tags__name",
         method=filter_by_tags,
