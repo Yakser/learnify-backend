@@ -4,6 +4,7 @@ from users.views import (
     UserDetail,
     UserList,
     CurrentUser,
+    UserFeed,
 )
 
 app_name = "users"
@@ -11,8 +12,9 @@ app_name = "users"
 urlpatterns = [
     path("users/", UserList.as_view()),
     path("users/<int:pk>/", UserDetail.as_view()),
-    # path("users/reset-password/", EmailResetPassword.as_view()),
+    path("users/<int:pk>/feed/", UserFeed.as_view()),
     path("users/current/", CurrentUser.as_view()),
+    # path("users/reset-password/", EmailResetPassword.as_view()),
     # path("logout/", LogoutView.as_view()),
     # re_path(
     #     r"^account-confirm-email/",
