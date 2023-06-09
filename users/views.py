@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from rest_framework.generics import (
     ListCreateAPIView,
     RetrieveUpdateDestroyAPIView,
+    RetrieveAPIView,
 )
 from django_filters import rest_framework as filters
 from rest_framework.permissions import IsAuthenticated
@@ -24,3 +25,12 @@ class UserDetail(RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     permission_classes = [IsMyselfOrReadOnly, IsAuthenticated]
     serializer_class = UserDetailSerializer
+
+
+class CurrentUser(RetrieveAPIView):
+    queryset = User.objects.all()
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserDetailSerializer
+
+    def get_object(self):
+        return self.request.user

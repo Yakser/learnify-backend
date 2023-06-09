@@ -10,9 +10,9 @@ from rest_framework_simplejwt.views import (
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="ProCollab API",
+        title="learnify API",
         default_version="v1",
-        description="API for ProCollab",
+        description="API for learnify project",
     ),
     public=True,
     permission_classes=[permissions.IsAdminUser],
