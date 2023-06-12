@@ -6,7 +6,7 @@ from rest_framework.generics import (
     ListAPIView,
 )
 from django_filters import rest_framework as filters
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from universities.models import University
 from universities.serializers import UniversityListSerializer
@@ -22,6 +22,9 @@ class UserList(ListCreateAPIView):
     serializer_class = UserListSerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = UserFilter
+
+    # fixme
+    permission_classes = [AllowAny]
 
 
 class UserDetail(RetrieveUpdateDestroyAPIView):

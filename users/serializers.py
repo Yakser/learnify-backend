@@ -33,6 +33,19 @@ class UserDetailSerializer(serializers.ModelSerializer):
 
 
 class UserListSerializer(serializers.ModelSerializer):
+    achievements = serializers.SerializerMethodField()
+
+    def get_achievements(self, user):
+        return user.profile.achievements
+
+    def create(self, validated_data):
+        user = User(**validated_data)
+
+        user.set_password(validated_data["password"])
+        user.save()
+
+        return user
+
     class Meta:
         model = User
         fields = (
@@ -41,4 +54,14 @@ class UserListSerializer(serializers.ModelSerializer):
             "email",
             "first_name",
             "last_name",
+            "password",
+            "achievements",
+            # "favorite_subjects",
+            # "about",
         )
+        extra_kwargs = {
+            "password": {"write_only": True},
+            "achievements": {"write_only": True},
+            # "favorite_subjects": {"write_only": True},
+            # "about": {"write_only": True},
+        }

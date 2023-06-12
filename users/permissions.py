@@ -7,6 +7,6 @@ class IsMyselfOrReadOnly(BasePermission):
     """
 
     def has_object_permission(self, request, view, obj):
-        if request.method in SAFE_METHODS or (obj.user == request.user):
+        if request.method in SAFE_METHODS or (obj == request.user):
             return True
         return False

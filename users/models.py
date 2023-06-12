@@ -30,6 +30,7 @@ class Profile(models.Model):
         about: A TextField about of a User.
     """
 
+    # fixme email is not unique
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     achievements = models.TextField(blank=True, null=True)
     favorite_subjects = models.TextField(blank=True, null=True)
