@@ -23,10 +23,20 @@ class SpecializationAdmin(admin.ModelAdmin):
         "id",
         "name",
     )
+    search_fields = (
+        "id",
+        "name",
+    )
+    list_filter = (
+        "name",
+        "tags",
+    )
 
+    @admin.display(empty_value="???", description="Направление")
     def get_department_name(self, obj):
         return obj.department.name
 
+    @admin.display(empty_value="???", description="Университет")
     def get_department_university(self, obj):
         return obj.department.university.name
 
@@ -44,7 +54,16 @@ class DepartmentAdmin(admin.ModelAdmin):
         "id",
         "name",
     )
+    search_fields = (
+        "id",
+        "name",
+    )
+    list_filter = (
+        "name",
+        "tags",
+    )
 
+    @admin.display(empty_value="???", description="Университет")
     def get_university_name(self, obj):
         return obj.university.name
 
@@ -56,8 +75,16 @@ class UniversityAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "name",
+        "city",
     )
     list_display_links = (
         "id",
         "name",
     )
+
+    search_fields = (
+        "id",
+        "name",
+        "city",
+    )
+    list_filter = ("city", "tags")

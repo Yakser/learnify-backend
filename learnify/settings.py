@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "users.apps.UsersConfig",
     "subjects.apps.SubjectsConfig",
     "universities.apps.UniversitiesConfig",
+    "news.apps.NewsConfig",
     # Rest framework
     "rest_framework",
     # Filters

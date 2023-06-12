@@ -17,9 +17,39 @@ class UserAdmin(UserAdmin):
     list_display = (
         "username",
         "email",
+        "full_name",
         "is_staff",
     )
+    list_display_links = (
+        "username",
+        "email",
+        "full_name",
+    )
+    readonly_fields = ("date_joined",)
+    date_hierarchy = "date_joined"
+    search_fields = ("username", "first_name", "last_name", "email")
+
+    @admin.display(empty_value="???", description="Полное имя")
+    def full_name(self, obj):
+        return f"{obj.first_name} {obj.last_name}"
 
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
+
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "user",
+    )
+    list_display_links = (
+        "id",
+        "user",
+    )
+
+    search_fields = (
+        "id",
+        "user",
+    )

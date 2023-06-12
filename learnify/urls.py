@@ -41,4 +41,8 @@ urlpatterns = [
         "universities/",
         include(("universities.urls", "universities"), namespace="universities"),
     ),
+    path(
+        "news/",
+        include(("news.urls", "news"), namespace="news"),
+    ),
 ]
