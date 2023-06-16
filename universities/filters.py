@@ -28,6 +28,10 @@ class UniversityFilter(filters.FilterSet):
     """
 
     name__icontains = filters.Filter(field_name="name", lookup_expr="icontains")
+    city = filters.CharFilter(
+        field_name="city",
+        lookup_expr="iexact",
+    )
     tags = filters.CharFilter(
         field_name="tags__name",
         method=filter_by_tags,

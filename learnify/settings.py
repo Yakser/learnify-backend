@@ -84,10 +84,6 @@ MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
-# # fixme: remove auto-adding header in nginx config
-# if not DEBUG:
-#     del MIDDLEWARE[2]
-
 ROOT_URLCONF = "learnify.urls"
 
 TEMPLATES = [
