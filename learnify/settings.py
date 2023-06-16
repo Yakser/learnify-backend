@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     # Filters
     "django_filters",
     # Plugins
+    "debug_toolbar",
     "corsheaders",
     "drf_yasg",
     "rest_framework_simplejwt",
@@ -80,11 +81,12 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
-# fixme: remove auto-adding header in nginx config
-if not DEBUG:
-    del MIDDLEWARE[2]
+# # fixme: remove auto-adding header in nginx config
+# if not DEBUG:
+#     del MIDDLEWARE[2]
 
 ROOT_URLCONF = "learnify.urls"
 
