@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 
+from users.models import Profile
+
 User = get_user_model()
 
 
@@ -30,6 +32,10 @@ class UserDetailSerializer(serializers.ModelSerializer):
             "favorite_subjects",
             "about",
         )
+        extra_kwargs = {
+            "username": {"read_only": True},
+            "email": {"read_only": True},
+        }
 
 
 class UserListSerializer(serializers.ModelSerializer):
@@ -65,3 +71,13 @@ class UserListSerializer(serializers.ModelSerializer):
             # "favorite_subjects": {"write_only": True},
             # "about": {"write_only": True},
         }
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = (
+            "achievements",
+            "favorite_subjects",
+            "about",
+        )

@@ -4,11 +4,9 @@ from universities.models import University, Specialization, Department
 
 
 def filter_by_tags(queryset, name, value):
-    tags = value
-    if tags:
-        tags = tags.split(",")
+    if value:
+        tags = value.split(",")
         queryset = queryset.filter(tags__name__in=tags).distinct()
-
     return queryset
 
 

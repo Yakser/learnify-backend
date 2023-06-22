@@ -7,10 +7,12 @@ from rest_framework.generics import (
 )
 from django_filters import rest_framework as filters
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.response import Response
 
 from universities.models import University
 from universities.serializers import UniversityListSerializer
 from users.filters import UserFilter
+from users.helpers import update_profile_fields
 from users.permissions import IsMyselfOrReadOnly
 from users.serializers import UserListSerializer, UserDetailSerializer
 
@@ -31,6 +33,19 @@ class UserDetail(RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     permission_classes = [IsMyselfOrReadOnly, IsAuthenticated]
     serializer_class = UserDetailSerializer
+
+    def update(self, request, *args, **kwargs):
+        # Unify PATCH and PUT
+        partial = True
+        instance = self.get_object()
+
+        update_profile_fields(instance, request.data)
+
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+
+        self.perform_update(serializer)
+        return Response(serializer.data)
 
 
 class CurrentUser(RetrieveAPIView):
