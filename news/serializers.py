@@ -9,6 +9,7 @@ class NewsListSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "title",
+            "text",
             "created_at",
         )
 
