@@ -1,11 +1,12 @@
 from django.contrib import admin
+from import_export import resources
 from simple_history.admin import SimpleHistoryAdmin
-
-from news.models import News, Category
+from import_export.admin import ImportExportModelAdmin
+from news.models import Category, News
 
 
 @admin.register(News)
-class NewsAdmin(SimpleHistoryAdmin):
+class NewsAdmin(SimpleHistoryAdmin, ImportExportModelAdmin):
     list_display = (
         "id",
         "title",
@@ -56,4 +57,6 @@ class CategoryAdmin(SimpleHistoryAdmin):
     )
 
 
-# admin.site.register(News, SimpleHistoryAdmin)
+class NewsResource(resources.ModelResource):
+    class Meta:
+        model = News

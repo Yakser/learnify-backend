@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 
 from users.models import Profile
 
@@ -12,7 +14,7 @@ class ProfileInlined(admin.StackedInline):
     can_delete = False
 
 
-class UserAdmin(UserAdmin):
+class UserAdmin(UserAdmin, ImportExportModelAdmin):
     inlines = (ProfileInlined,)
     list_display = (
         "username",
@@ -53,3 +55,8 @@ class ProfileAdmin(admin.ModelAdmin):
         "id",
         "user",
     )
+
+
+class UsersResource(resources.ModelResource):
+    class Meta:
+        model = User

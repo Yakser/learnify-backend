@@ -1,8 +1,9 @@
 import mimetypes
 from datetime import timedelta
+from pathlib import Path
 
 from decouple import config
-from pathlib import Path
+from import_export.formats.base_formats import XLSX
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -62,6 +63,7 @@ INSTALLED_APPS = [
     # "taggit_serializer",
     "taggit",
     "simple_history",
+    "import_export",
 ]
 
 REST_FRAMEWORK = {
@@ -210,3 +212,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 mimetypes.add_type("application/javascript", ".js", True)
 mimetypes.add_type("text/css", ".css", True)
 mimetypes.add_type("text/html", ".html", True)
+
+
+IMPORT_EXPORT_FORMATS = [XLSX]
+IMPORT_EXPORT_USE_TRANSACTIONS = True
