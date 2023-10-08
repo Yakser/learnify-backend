@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     # "taggit_serializer",
     "taggit",
+    "simple_history",
 ]
 
 REST_FRAMEWORK = {
@@ -82,6 +83,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "simple_history.middleware.HistoryRequestMiddleware",
 ]
 
 ROOT_URLCONF = "learnify.urls"

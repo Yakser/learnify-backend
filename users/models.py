@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from simple_history.models import HistoricalRecords
 
 User = get_user_model()
 
@@ -52,6 +53,8 @@ class Profile(models.Model):
         verbose_name="О себе",
         help_text="Дополнительная информация о пользователе",
     )
+
+    history = HistoricalRecords()
 
     class Meta:
         verbose_name = "Дополнительное поле"

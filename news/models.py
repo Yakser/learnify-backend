@@ -1,4 +1,5 @@
 from django.db import models
+from simple_history.models import HistoricalRecords
 from taggit.managers import TaggableManager
 
 
@@ -34,6 +35,7 @@ class News(models.Model):
         help_text='Например: "Образование", "Технологии" и т.д.',
     )
 
+    history = HistoricalRecords()
     tags = TaggableManager()
 
     class Meta:
@@ -81,6 +83,7 @@ class Category(models.Model):
         auto_now_add=True,
         verbose_name="Дата создания",
     )
+    history = HistoricalRecords()
 
     class Meta:
         verbose_name = "Категория"

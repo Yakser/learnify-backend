@@ -1,10 +1,11 @@
 from django.contrib import admin
+from simple_history.admin import SimpleHistoryAdmin
 
 from news.models import News, Category
 
 
 @admin.register(News)
-class NewsAdmin(admin.ModelAdmin):
+class NewsAdmin(SimpleHistoryAdmin):
     list_display = (
         "id",
         "title",
@@ -30,7 +31,7 @@ class NewsAdmin(admin.ModelAdmin):
 
 
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(SimpleHistoryAdmin):
     list_display = (
         "id",
         "title",
@@ -53,3 +54,6 @@ class CategoryAdmin(admin.ModelAdmin):
         "created_at",
         "updated_at",
     )
+
+
+# admin.site.register(News, SimpleHistoryAdmin)
