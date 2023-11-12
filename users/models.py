@@ -36,6 +36,7 @@ class Profile(models.Model):
         User,
         on_delete=models.CASCADE,
         verbose_name="Пользователь",
+        related_name="profile",
     )
     achievements = models.TextField(
         blank=True,

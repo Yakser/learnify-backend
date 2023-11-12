@@ -5,6 +5,15 @@ from import_export.admin import ImportExportModelAdmin
 from news.models import Category, News
 
 
+class NewsResource(resources.ModelResource):
+    class Meta:
+        model = News
+        fields = (
+            "id",
+            "title",
+        )
+
+
 @admin.register(News)
 class NewsAdmin(SimpleHistoryAdmin, ImportExportModelAdmin):
     list_display = (
@@ -55,8 +64,3 @@ class CategoryAdmin(SimpleHistoryAdmin):
         "created_at",
         "updated_at",
     )
-
-
-class NewsResource(resources.ModelResource):
-    class Meta:
-        model = News
