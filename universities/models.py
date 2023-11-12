@@ -3,6 +3,7 @@ from django.db import models
 from taggit.managers import TaggableManager
 
 from subjects.models import Subject
+from universities.manager import SpecializationManager
 
 
 class University(models.Model):
@@ -132,6 +133,7 @@ class Specialization(models.Model):
     )
 
     tags = TaggableManager()
+    objects = SpecializationManager()
 
     def get_short_description(self):
         if self.description:

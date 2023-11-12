@@ -59,7 +59,7 @@ class DepartmentDetail(RetrieveAPIView):
 
 
 class SpecializationList(ListCreateAPIView):
-    queryset = Specialization.objects.all()
+    queryset = Specialization.objects.applied_or_without_physics()
     serializer_class = SpecializationListSerializer
     permission_classes = [IsStaffOrReadOnly]
     filter_backends = (filters.DjangoFilterBackend,)

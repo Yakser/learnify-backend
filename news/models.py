@@ -20,6 +20,9 @@ class News(models.Model):
         verbose_name="Заголовок",
     )
     text = models.TextField(null=False, blank=False, verbose_name="Текст")
+    short_text = models.TextField(
+        null=True, verbose_name="Укороченнный текст", editable=False
+    )
     updated_at = models.DateTimeField(
         auto_now=True,
         verbose_name="Дата обновления",
@@ -41,6 +44,7 @@ class News(models.Model):
     class Meta:
         verbose_name = "Новость"
         verbose_name_plural = "Новости"
+        ordering = ["-created_at"]
 
     def __str__(self):
         return f"News<{self.pk}> - {self.title}"

@@ -10,6 +10,7 @@ class NewsListSerializer(serializers.ModelSerializer):
             "id",
             "title",
             "text",
+            "short_text",
             "created_at",
         )
 
